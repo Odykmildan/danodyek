@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marble City Medical Centre Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Marble City Medical Centre Dashboard</h1>
+        <input type="text" id="search-bar" placeholder="Search...">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#patient-portal">Patient Portal</a></li>
+            <li><a href="#user-login">User Login</a></li>
+            <li><a href="#test-statistics">Test Statistics</a></li>
+            <li><a href="#report-generation">Generate Report</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="patient-portal">
+            <h2>Patient Portal</h2>
+            <!-- Patient portal content -->
+        </section>
+        <section id="user-login">
+            <h2>User Login</h2>
+            <!-- User login content -->
+        </section>
+        <section id="test-statistics">
+            <h2>Test Statistics</h2>
+            <!-- Test statistics content -->
+        </section>
+        <section id="report-generation">
+            <h2>Generate Report</h2>
+            <!-- Report generation content -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Marble City Medical Centre</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+#search-bar {
+    width: 80%;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+nav {
+    background-color: #444;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    padding: 14px 20px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav ul li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+// scripts.js
+document.getElementById('search-bar').addEventListener('input', function(event) {
+    const query = event.target.value.toLowerCase();
+    // Implement search functionality here
+    console.log('Search query:', query);
+});
+<!-- User Login -->
+<section id="user-login">
+    <h2>User Login</h2>
+    <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
+</section>
+<!-- Test Statistics -->
+<section id="test-statistics">
+    <h2>Test Statistics</h2>
+    <canvas id="test-chart"></canvas>
+</section>
+// scripts.js
+const ctx = document.getElementById('test-chart').getContext('2d');
+const testChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Test 1', 'Test 2', 'Test 3'],
+        datasets: [{
+            label: 'Number of Tests',
+            data: [12, 19, 3],
+            backgroundColor: ['red', 'blue', 'green'],
+            borderColor: ['darkred', 'darkblue', 'darkgreen'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+// scripts.js
+function generateCSV(data) {
+    const csvRows = [];
+    const headers = Object.keys(data[0]);
+    csvRows.push(headers.join(','));
+
+    for (const row of data) {
+        const values = headers.map(header => row[header]);
+        csvRows.push(values.join(','));
+    }
+
+    const csvString = csvRows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'report.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+// Example usage
+const data = [
+    { name: 'John Doe', age: 30, test: 'Blood Test', result: 'Positive' },
+    { name: 'Jane Smith', age: 25, test: 'X-Ray', result: 'Negative' }
+];
+generateCSV(data);
+/* styles.css */
+section {
+    opacity: 0;
+    animation: fadeIn 1s forwards
+::contentReference[oaicite:0]{index=0}
+ 
